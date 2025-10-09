@@ -5,10 +5,10 @@
      *
      * Representa la entidad soporte del videoclub.
      *
-     * Extiende: Resumible.
+     * Implementa la interfaz Resumible.
      */
 
-    abstract class Soporte extends Resumible{
+    abstract class Soporte implements Resumible {
         public $titulo;
         protected $numero;        
         private $precio;
@@ -54,6 +54,10 @@
         }
         /**
          * MuestraResumen.
+         * Esta clase está obligada a implementar este método porque implementa la interfaz Resumible
+         * Nota: Si quisieramos que todas las subclases implementaran obligatoriamente este método, y cada una a su manera deberíamos 
+         * tener el método así: abstract public function muestraResumen(): void;
+         * Pero tal y como lo tenemos, las clases no tienen obligación a implementarlo, y heredan esto, y además pueden sobreescribirlo
          * @return mixed Resultado.
          */
 
