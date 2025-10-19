@@ -304,6 +304,98 @@
             }
             return null;
         }
+
+        
+        /**
+         * AlquilarSocioProductos.
+         *
+         * Antes de alquilarlos, comprueba que TODOS los soportes existen y están disponibles.
+         * Si alguno no lo está, NO se alquila ninguno.
+         *
+         * @param int   $numSocio          Número de socio.
+         * @param array $numerosProductos  Array de números de producto (soportes) a alquilar.
+         * @return Videoclub
+         */
+        public function alquilarSocioProductos(int $numSocio, array $numerosProductos): Videoclub
+        {
+            try {
+                // Validaciones básicas
+                if (empty($numerosProductos)) {
+                    echo "<br>Error: no se han indicado productos a alquilar.";
+                    return $this;
+                }
+
+                // Buscar cliente
+                $cliente = $this->buscarCliente($numSocio);
+                if (!$cliente) {
+                    throw new ClienteNoEncontradoException("No existe el cliente con número {$numSocio}");
+                }
+
+                // Normalizamos entradas (evitar duplicados simples)
+                $numerosSolicitados = array_values(array_unique($numerosProductos));
+
+                // Comprobacikón que todos existan y estén disponibles
+                $productosAAlquilar = [];
+                foreach ($numerosSolicitados as $numSoporte) {
+                    $producto = $this->buscarProducto($numSoporte);
+                    if (!$producto) {
+                        throw new SoporteNoEncontradoException("No existe el producto con número {$numSoporte}");
+                    }
+                    if (($producto->alquilado ?? false) === true) {
+                        throw new SoporteYaAlquiladoException("El producto {$numSoporte} ya está alquilado");
+                    }
+                    $productosAAlquilar[] = $producto;
+                }
+
+                // Alquilar todos (si algo falla se revierte todo)
+                $alquiladosTemporalmente = [];
+                try {
+                    foreach ($productosAAlquilar as $producto) {
+                        // Puede lanzar CupoSuperadoException (límite del cliente)
+                        $cliente->alquilar($producto);
+                        $alquiladosTemporalmente[] = $producto;
+                    }
+                } catch (CupoSuperadoException | SoporteYaAlquiladoException $e) {
+                    // Devolver los ya alquilados en esta operación
+                    foreach ($alquiladosTemporalmente as $p) {
+                        try {
+                            $cliente->devolver($p->getNumero());
+                        } catch (\Throwable $ignore) {
+                            
+                        }
+                    }
+                    // Re-lanzamos para informar al usuario en el catch exterior
+                    throw $e;
+                }
+
+                // Contadores solo si todo fue bien
+                $numNuevos = count($alquiladosTemporalmente);
+                if ($numNuevos > 0) {
+                    $this->numProductosAlquilados += $numNuevos;
+                    $this->numTotalAlquileres   += $numNuevos;
+                }
+
+                // Mensaje de éxito
+                $nums = [];
+                foreach ($alquiladosTemporalmente as $p) {
+                    $nums[] = $p->getNumero();
+                }
+                $lista = implode(', ', $nums);
+                echo "<br>El cliente {$cliente->nombre} ha alquilado los productos: {$lista} correctamente.";
+            }
+            catch (ClienteNoEncontradoException|
+                   SoporteNoEncontradoException|
+                   SoporteYaAlquiladoException|
+                   CupoSuperadoException $e) {
+                echo "<br>Error: " . $e->getMessage();
+            }
+            catch (VideoclubException $e) {
+                echo "<br>Error inesperado en el videoclub: " . $e->getMessage();
+            }
+
+            return $this;
+        }
+
         
         // Getters
         /**
