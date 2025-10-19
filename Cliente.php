@@ -8,6 +8,10 @@
      * Representa la entidad cliente del videoclub.
      */
 
+    use Dwes\ProyectoVideoclub\Util\CupoSuperadoException;
+    use Dwes\ProyectoVideoclub\Util\SoporteNoEncontradoException;
+    use Dwes\ProyectoVideoclub\Util\SoporteYaAlquiladoException;
+
     class Cliente {
 
         public $nombre;
@@ -86,22 +90,28 @@
         /**
          * Alquilar.
          *
-         * @param Soporte $s Parámetro.
-         * @return bool Resultado.
+         * @return self
+         * @throws SoporteYaAlquiladoException
+         * @throws CupoSuperadoException
          */
 
-        public function alquilar(Soporte $s): Cliente {
+        public function alquilar(Soporte $s): self {
             if ($this->tieneAlquilado($s)) {
-                echo "<br>El soporte " . $s->getNumero() . " ya está alquilado por " . $this->nombre;
-            } elseif ($this->numSoportesAlquilados >= $this->maxAlquilerConcurrente) {
-                echo "<br>" . $this->nombre . " ha superado el cupo máximo de " . $this->maxAlquilerConcurrente . " alquileres";
-            } else {
-                $this->soportesAlquilados[] = $s;
-                $this->numSoportesAlquilados++;
-                echo "<br>" . $this->nombre . " ha alquilado el soporte " . $s->getNumero() . " correctamente";
+                throw new SoporteYaAlquiladoException(
+                    "El soporte {$s->getNumero()} ya está alquilado por {$this->nombre}"
+                );
+            }
+            if ($this->numSoportesAlquilados >= $this->maxAlquilerConcurrente) {
+                throw new CupoSuperadoException(
+                    "{$this->nombre} ha superado el cupo máximo de {$this->maxAlquilerConcurrente} alquileres"
+                );
             }
 
-            return $this; // permite encadenamiento
+            $this->soportesAlquilados[] = $s;
+            $this->numSoportesAlquilados++;
+            $s->alquilado = true;
+
+            return $this; // encadenamiento
         }
         
         // Método devolver
@@ -109,23 +119,26 @@
          * Devolver.
          *
          * @param int $numSoporte Parámetro.
-         * @return bool Resultado.
+         * @return self  Devuelve el propio cliente para encadenar.
+         * @throws SoporteNoEncontradoException
          */
 
-        public function devolver(int $numSoporte): bool {
+        public function devolver(int $numSoporte): self {
 
             foreach ($this->soportesAlquilados as $indice => $soporte) {
                 if ($soporte->getNumero() === $numSoporte) {
-                    // Encontrado, proceder a devolución
                     array_splice($this->soportesAlquilados, $indice, 1);
                     $this->numSoportesAlquilados--;
-                    echo "<br>" . $this->nombre . " ha devuelto el soporte " . $numSoporte . " correctamente";
-                    return true;
+
+                    $soporte->alquilado = false;
+                    
+                    return $this; // encadenamiento
                 }
             }
-            
-            echo "<br>El soporte " . $numSoporte . " no estaba alquilado por " . $this->nombre;
-            return false;
+
+            throw new SoporteNoEncontradoException(
+                "El soporte {$numSoporte} no estaba alquilado por {$this->nombre}"
+            );
         }
         
         // Método listarAlquileres
