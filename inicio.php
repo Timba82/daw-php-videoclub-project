@@ -1,4 +1,6 @@
 <?php
+// v0.331
+namespace Dwes\ProyectoVideoclub;
 /**
  * Script de ejemplo del videoclub.
  *

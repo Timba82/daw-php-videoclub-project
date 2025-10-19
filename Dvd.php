@@ -1,4 +1,6 @@
 <?php
+    // v0.331
+    namespace Dwes\ProyectoVideoclub;
     require_once 'Soporte.php';
     /**
      * Clase Dvd.
@@ -53,7 +55,7 @@
          * @return mixed Resultado.
          */
 
-        public function muestraResumen() {
+        public function muestraResumen():void {
             // Llamar al método muestraResumen del padre
             parent::muestraResumen();
             // Añadir información específica de CintaVideo

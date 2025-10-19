@@ -1,4 +1,7 @@
+
 <?php
+    // v0.331
+    namespace Dwes\ProyectoVideoclub;
     /**
      * Clase Cliente.
      *
@@ -87,26 +90,18 @@
          * @return bool Resultado.
          */
 
-        public function alquilar(Soporte $s): bool {
-            $superado=true;
-            // Comprobar si ya está alquilado
+        public function alquilar(Soporte $s): Cliente {
             if ($this->tieneAlquilado($s)) {
                 echo "<br>El soporte " . $s->getNumero() . " ya está alquilado por " . $this->nombre;
-                $superado=false;
-            }else{
-                // Comprobar cupo máximo
-                if ($this->numSoportesAlquilados >= $this->maxAlquilerConcurrente) {
-                    echo "<br>" . $this->nombre . " ha superado el cupo máximo de " . $this->maxAlquilerConcurrente . " alquileres";
-                    $superado=false;
-                }else{
-                    // Alquilar el soporte
-                    $this->soportesAlquilados[] = $s;
-                    $this->numSoportesAlquilados++;
-                    echo "<br>" . $this->nombre . " ha alquilado el soporte " . $s->getNumero() . " correctamente";
-                }
-
+            } elseif ($this->numSoportesAlquilados >= $this->maxAlquilerConcurrente) {
+                echo "<br>" . $this->nombre . " ha superado el cupo máximo de " . $this->maxAlquilerConcurrente . " alquileres";
+            } else {
+                $this->soportesAlquilados[] = $s;
+                $this->numSoportesAlquilados++;
+                echo "<br>" . $this->nombre . " ha alquilado el soporte " . $s->getNumero() . " correctamente";
             }
-            return $superado;
+
+            return $this; // permite encadenamiento
         }
         
         // Método devolver
