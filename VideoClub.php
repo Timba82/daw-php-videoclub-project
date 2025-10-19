@@ -8,6 +8,15 @@
     require_once 'Cliente.php';
 
     
+
+    use Dwes\ProyectoVideoclub\Util\{
+        VideoclubException,
+        ClienteNoEncontradoException,
+        SoporteNoEncontradoException,
+        SoporteYaAlquiladoException,
+        CupoSuperadoException
+    };
+
     /**
      * Clase Videoclub.
      *
@@ -171,19 +180,37 @@
          */
 
         public function alquilaSocioProducto($numeroCliente, $numeroSoporte): Videoclub {
-            $cliente = $this->buscarCliente($numeroCliente);
-            if (!$cliente) {
-                echo "<br>Error: No existe el cliente con número " . $numeroCliente;
-                return $this;
+            try {
+                // Buscar cliente
+                $cliente = $this->buscarCliente($numeroCliente);
+                if (!$cliente) {
+                    throw new ClienteNoEncontradoException("No existe el cliente con número {$numeroCliente}");
+                }
+
+                // Buscar producto
+                $producto = $this->buscarProducto($numeroSoporte);
+                if (!$producto) {
+                    throw new SoporteNoEncontradoException("No existe el producto con número {$numeroSoporte}");
+                }
+
+                // Intentar alquiler (puede lanzar excepciones)
+                $cliente->alquilar($producto);
+
+                echo "<br>El cliente {$cliente->nombre} ha alquilado el producto {$numeroSoporte} correctamente.";
             }
 
-            $producto = $this->buscarProducto($numeroSoporte);
-            if (!$producto) {
-                echo "<br>Error: No existe el producto con número " . $numeroSoporte;
-                return $this;
+            catch (
+                ClienteNoEncontradoException |
+                SoporteNoEncontradoException |
+                SoporteYaAlquiladoException |
+                CupoSuperadoException $e) {
+                echo "<br>Error: " . $e->getMessage();
+            } 
+            catch (VideoclubException $e) {
+                // Captura genérica (por si creas más excepciones en el futuro)
+                echo "<br>Error inesperado en el videoclub: " . $e->getMessage();
             }
 
-            $cliente->alquilar($producto);
             return $this; // permite encadenamiento
         }
         
@@ -196,14 +223,25 @@
          * @return mixed Resultado.
          */
 
-        public function devolverSocioProducto($numeroCliente, $numeroSoporte) {
-            $cliente = $this->buscarCliente($numeroCliente);
-            if (!$cliente) {
-                echo "<br>Error: No existe el cliente con número " . $numeroCliente;
-                return false;
+        public function devolverSocioProducto($numeroCliente, $numeroSoporte): Videoclub
+        {
+            try {
+                $cliente = $this->buscarCliente($numeroCliente);
+                if (!$cliente) {
+                    throw new ClienteNoEncontradoException("No existe el cliente con número {$numeroCliente}");
+                }
+
+                // Puede lanzar SoporteNoEncontradoException
+                $cliente->devolver($numeroSoporte);
+
+                echo "<br>El cliente {$cliente->nombre} ha devuelto el producto {$numeroSoporte} correctamente.";
+            } catch (ClienteNoEncontradoException|SoporteNoEncontradoException $e) {
+                echo "<br>Error: " . $e->getMessage();
+            } catch (VideoclubException $e) {
+                echo "<br>Error inesperado en el videoclub: " . $e->getMessage();
             }
-            
-            return $cliente->devolver($numeroSoporte);
+
+            return $this; // encadenamiento
         }
         
         // Métodos auxiliares privados para buscar
