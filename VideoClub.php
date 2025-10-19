@@ -270,6 +270,85 @@
 
             return $this; // encadenamiento
         }
+
+
+        /**
+         * DevolverSocioProductos.
+         *
+         * Devuelve varios productos de un socio. Soporta encadenamiento.
+         * Actualiza "alquilado" de cada soporte y el contador de productos alquilados.
+         * Si algún producto da error (no existe/no estaba alquilado por el socio), continúa con los demás.
+         *
+         * @param int   $numSocio          Número de socio.
+         * @param array $numerosProductos  Array de números de producto a devolver.
+         * @return Videoclub
+         */
+        public function devolverSocioProductos(int $numSocio, array $numerosProductos): Videoclub
+        {
+            try {
+                if (empty($numerosProductos)) {
+                    echo "<br>Error: no se han indicado productos a devolver.";
+                    return $this;
+                }
+
+                // Buscar cliente
+                $cliente = $this->buscarCliente($numSocio);
+                if (!$cliente) {
+                    throw new ClienteNoEncontradoException("No existe el cliente con número {$numSocio}");
+                }
+
+                // Normalizar (quitar duplicados)
+                $numerosSolicitados = array_values(array_unique($numerosProductos));
+
+                $devueltos = [];
+                $errores  = [];
+
+                foreach ($numerosSolicitados as $numSoporte) {
+                    // Localizamos producto para ajustar contadores y validar existencia
+                    $producto = $this->buscarProducto($numSoporte);
+                    if (!$producto) {
+                        $errores[] = "No existe el producto con número {$numSoporte}";
+                        continue;
+                    }
+
+                    $estabaAlquiladoAntes = $producto->alquilado ?? false;
+
+                    try {
+                        // Puede lanzar SoporteNoEncontradoException si ese cliente no lo tenía
+                        $cliente->devolver($numSoporte);
+
+                        // Si estaba alquilado y ahora queda libre, decrementamos contador
+                        if ($estabaAlquiladoAntes && ($producto->alquilado ?? true) === false) {
+                            if ($this->numProductosAlquilados > 0) {
+                                $this->numProductosAlquilados--;
+                            }
+                        }
+
+                        $devueltos[] = $numSoporte;
+                    } catch (SoporteNoEncontradoException $e) {
+                        $errores[] = $e->getMessage();
+                    }
+                }
+
+                // Mensajes
+                if (!empty($devueltos)) {
+                    $listaOk = implode(', ', $devueltos);
+                    echo "<br>El cliente {$cliente->nombre} ha devuelto los productos: {$listaOk} correctamente.";
+                }
+                if (!empty($errores)) {
+                    foreach ($errores as $msg) {
+                        echo "<br>Error: {$msg}";
+                    }
+                }
+            } catch (ClienteNoEncontradoException $e) {
+                echo "<br>Error: " . $e->getMessage();
+            } catch (VideoclubException $e) {
+                echo "<br>Error inesperado en el videoclub: " . $e->getMessage();
+            }
+
+            return $this;
+        }
+
         
         // Métodos auxiliares privados para buscar
         /**
