@@ -14,6 +14,7 @@
         protected $numero;        
         private $precio;
         const IVA = 0.21;
+        public bool $alquilado = false;
 
         /**
          * __construct.

@@ -9,7 +9,7 @@
 
     
 
-    use Dwes\ProyectoVideoclub\Util\{
+    use Dwes\ProyectoVideoclub\Util|{
         VideoclubException,
         ClienteNoEncontradoException,
         SoporteNoEncontradoException,
@@ -29,6 +29,8 @@
         private $numProductos;
         private array $socios;
         private $numSocios;
+        private int $numProductosAlquilados;
+        private int $numTotalAlquileres;
         
         // Constructor
         /**
@@ -43,6 +45,8 @@
             $this->numProductos = 0;
             $this->socios = [];
             $this->numSocios = 0;
+            $this->numProductosAlquilados = 0;
+            $this->numTotalAlquileres = 0;
         }
         
         // Método privado para incluir productos
@@ -194,7 +198,15 @@
                 }
 
                 // Intentar alquiler (puede lanzar excepciones)
+                // Guardar estado previo por si hace falta ajustar contadores
+                $estabaAlquiladoAntes = $producto->alquilado ?? false; 
                 $cliente->alquilar($producto);
+
+                // Si antes no estaba alquilado y ahora sí, actualizamos contadores
+                if (!$estabaAlquiladoAntes && ($producto->alquilado ?? false) === true) { 
+                    $this->numProductosAlquilados++;                                       
+                    $this->numTotalAlquileres++;                                           
+                }
 
                 echo "<br>El cliente {$cliente->nombre} ha alquilado el producto {$numeroSoporte} correctamente.";
             }
@@ -231,8 +243,23 @@
                     throw new ClienteNoEncontradoException("No existe el cliente con número {$numeroCliente}");
                 }
 
+                // Localizar el producto para ajustar contadores tras devolver
+                $producto = $this->buscarProducto($numeroSoporte);                  
+                if (!$producto) {                                                   
+                    throw new SoporteNoEncontradoException("No existe el producto con número {$numeroSoporte}"); 
+                }                                                                   
+
+                $estabaAlquiladoAntes = $producto->alquilado ?? false;             
+
                 // Puede lanzar SoporteNoEncontradoException
                 $cliente->devolver($numeroSoporte);
+
+                // Si estaba alquilado y tras devolver ha quedado libre, decrementamos
+                if ($estabaAlquiladoAntes && ($producto->alquilado ?? true) === false) { 
+                    if ($this->numProductosAlquilados > 0) {                              
+                        $this->numProductosAlquilados--;                                  
+                    }                                                                     
+                }                                                                          
 
                 echo "<br>El cliente {$cliente->nombre} ha devuelto el producto {$numeroSoporte} correctamente.";
             } catch (ClienteNoEncontradoException|SoporteNoEncontradoException $e) {
@@ -322,6 +349,22 @@
 
         public function getSocios() {
             return $this->socios;
+        }
+
+        /**
+         * getNumProductosAlquilados.
+         * @return numProductosAlquilados.
+         */
+        public function getNumProductosAlquilados(): int {
+            return $this->numProductosAlquilados;
+        }
+
+        /**
+         * getNumTotalAlquileres.
+         * @return numTotalAlquileres.
+         */
+        public function getNumTotalAlquileres(): int {
+            return $this->numTotalAlquileres;
         }
     }
 ?>

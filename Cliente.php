@@ -109,6 +109,8 @@
 
             $this->soportesAlquilados[] = $s;
             $this->numSoportesAlquilados++;
+            $s->alquilado = true;
+
             return $this; // encadenamiento
         }
         
@@ -127,6 +129,9 @@
                 if ($soporte->getNumero() === $numSoporte) {
                     array_splice($this->soportesAlquilados, $indice, 1);
                     $this->numSoportesAlquilados--;
+
+                    $soporte->alquilado = false;
+                    
                     return $this; // encadenamiento
                 }
             }
