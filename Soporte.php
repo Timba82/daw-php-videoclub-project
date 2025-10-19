@@ -1,5 +1,6 @@
 <?php
-    
+    // v0.331
+    namespace Dwes\ProyectoVideoclub;
     /**
      * Clase Soporte.
      *
@@ -61,7 +62,7 @@
          * @return mixed Resultado.
          */
 
-        public function muestraResumen(){
+        public function muestraResumen():void{
             echo  "<br>Número: " . $this->numero . 
              ",<br>Título: " . $this->titulo . 
              ",<br> Precio: " . $this->precio . 

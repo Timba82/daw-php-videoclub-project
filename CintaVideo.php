@@ -1,6 +1,6 @@
 <?php
     require_once 'Soporte.php';
-    
+    namespace Dwes\ProyectoVideoclub;
     /**
      * Clase CintaVideo.
      *
@@ -42,7 +42,7 @@
          * @return mixed Resultado.
          */
 
-        public function muestraResumen() {
+        public function muestraResumen():void {
             // Llamar al método muestraResumen del padre
             parent::muestraResumen();
             // Añadir información específica de CintaVideo

@@ -1,4 +1,6 @@
 <?php
+    // v0.331
+    namespace Dwes\ProyectoVideoclub;
     require_once 'Soporte.php';
     require_once 'CintaVideo.php';
     require_once 'Dvd.php';
@@ -168,23 +170,21 @@
          * @return mixed Resultado.
          */
 
-        public function alquilaSocioProducto($numeroCliente, $numeroSoporte) {
-            // Buscar el cliente
+        public function alquilaSocioProducto($numeroCliente, $numeroSoporte): Videoclub {
             $cliente = $this->buscarCliente($numeroCliente);
             if (!$cliente) {
                 echo "<br>Error: No existe el cliente con número " . $numeroCliente;
-                return false;
+                return $this;
             }
-            
-            // Buscar el producto
+
             $producto = $this->buscarProducto($numeroSoporte);
             if (!$producto) {
                 echo "<br>Error: No existe el producto con número " . $numeroSoporte;
-                return false;
+                return $this;
             }
-            
-            // Realizar el alquiler
-            return $cliente->alquilar($producto);
+
+            $cliente->alquilar($producto);
+            return $this; // permite encadenamiento
         }
         
         // Método para devolver un producto
