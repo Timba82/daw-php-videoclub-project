@@ -1,6 +1,7 @@
 <?php
     // v0.331
     namespace Dwes\ProyectoVideoclub;
+    require_once __DIR__ . '/Resumible.php';
     /**
      * Clase Soporte.
      *

@@ -75,7 +75,7 @@
          * @return mixed Resultado.
          */
 
-        public function muestraResumen() {
+        public function muestraResumen(): void {
             // Llamar al método muestraResumen del padre
             parent::muestraResumen();
             // Añadir información específica de Juego
