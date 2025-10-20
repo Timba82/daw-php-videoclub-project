@@ -128,11 +128,9 @@ Define el método `muestraResumen()`, que deben implementar todas las clases que
 
 ## ⚙️ Instrucciones de Uso
 
-### 🖥️ 1. Inicializar el repositorio local
+### 🖥️ 1. Clonar el repositorio usando HTTPS
+Para clonar este proyecto desde GitHub con HTTPS, ejecuta:
+
 ```bash
-git init
-git add .
-git commit -m "Inicializando proyecto"
+git clone https://github.com/Timba82/daw-php-videoclub-project.git
 
-
-> ⚠️ Nota: Este README.md ha sido generado con la ayuda de **ChatGPT (modelo GPT-5 mini)** de OpenAI.
