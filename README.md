@@ -134,3 +134,5 @@ Para clonar este proyecto desde GitHub con HTTPS, ejecuta:
 ```bash
 git clone https://github.com/Timba82/daw-php-videoclub-project.git
 
+> ⚠️ Nota: Este README.md ha sido generado con la ayuda de **ChatGPT (modelo GPT-5 mini)** de OpenAI.
+
