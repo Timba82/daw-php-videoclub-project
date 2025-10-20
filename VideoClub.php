@@ -9,7 +9,7 @@
 
     
 
-    use Dwes\ProyectoVideoclub\Util|{
+    use Dwes\ProyectoVideoclub\Util \{
         VideoclubException,
         ClienteNoEncontradoException,
         SoporteNoEncontradoException,

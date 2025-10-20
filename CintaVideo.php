@@ -1,6 +1,6 @@
 <?php
-    require_once 'Soporte.php';
     namespace Dwes\ProyectoVideoclub;
+    require_once 'Soporte.php';
     /**
      * Clase CintaVideo.
      *
