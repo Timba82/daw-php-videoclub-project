@@ -2,7 +2,7 @@
 spl_autoload_register(function ($clase) {
     // Solo cargamos clases de nuestro namespace
     $prefix = 'Dwes\\ProyectoVideoclub\\';
-    $baseDir = __DIR__ . '/';
+    $baseDir = __DIR__ . '/app/';
 
     // Si no pertenece a nuestro namespace, no hacemos nada
     if (strncmp($prefix, $clase, strlen($prefix)) !== 0) {
