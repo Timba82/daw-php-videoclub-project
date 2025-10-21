@@ -2,12 +2,7 @@
 // v0.331
 namespace Dwes\ProyectoVideoclub;
 
-// Incluimos las clases necesarias
-include_once "Soporte.php";
-include_once "CintaVideo.php";
-include_once "Dvd.php";
-include_once "Juego.php";
-include_once "Cliente.php";
+require_once __DIR__ . '/autoload.php';
 
 use Dwes\ProyectoVideoclub\Util\SoporteYaAlquiladoException;
 use Dwes\ProyectoVideoclub\Util\CupoSuperadoException;
