@@ -1,7 +1,7 @@
 <?php
     // v0.331
     namespace Dwes\ProyectoVideoclub;
-    require_once 'Soporte.php';
+
     /**
      * Clase Dvd.
      *

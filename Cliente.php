@@ -11,10 +11,7 @@
     use Dwes\ProyectoVideoclub\Util\SoporteNoEncontradoException;
     use Dwes\ProyectoVideoclub\Util\SoporteYaAlquiladoException;
 
-    require_once __DIR__ . '/Util/VideoclubException.php';
-    require_once __DIR__ . '/Util/SoporteYaAlquiladoException.php';
-    require_once __DIR__ . '/Util/CupoSuperadoException.php';
-    require_once __DIR__ . '/Util/SoporteNoEncontradoException.php';
+
 
     class Cliente {
 

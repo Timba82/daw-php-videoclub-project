@@ -1,15 +1,9 @@
 <?php
     // v0.331
     namespace Dwes\ProyectoVideoclub;
-    require_once 'Soporte.php';
-    require_once 'CintaVideo.php';
-    require_once 'Dvd.php';
-    require_once 'Juego.php';
-    require_once 'Cliente.php';
 
-    
 
-    use Dwes\ProyectoVideoclub\Util \{
+    use Dwes\ProyectoVideoclub\Util\{
         VideoclubException,
         ClienteNoEncontradoException,
         SoporteNoEncontradoException,
@@ -25,12 +19,12 @@
 
     class Videoclub {
         private $nombre;
-        private array $productos;
+        private $productos;
         private $numProductos;
-        private array $socios;
+        private $socios;
         private $numSocios;
-        private int $numProductosAlquilados;
-        private int $numTotalAlquileres;
+        private $numProductosAlquilados;
+        private $numTotalAlquileres;
         
         // Constructor
         /**

@@ -7,7 +7,8 @@ namespace Dwes\ProyectoVideoclub;
  * Este archivo forma parte del proyecto de Videoclub (DAW2) y contiene
  * lógica de arranque o uso de las clases de dominio.
  */
-include "Juego.php";
+
+require_once __DIR__ . '/autoload.php';
 
 $miJuego = new Juego("The Last of Us Part II", 26, 49.99, "PS4", 1, 5); 
 echo "<strong>" . $miJuego->titulo . "</strong>"; 
