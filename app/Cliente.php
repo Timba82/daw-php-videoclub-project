@@ -11,8 +11,6 @@
     use Dwes\ProyectoVideoclub\Util\SoporteNoEncontradoException;
     use Dwes\ProyectoVideoclub\Util\SoporteYaAlquiladoException;
 
-
-
     class Cliente {
 
         public $nombre;
@@ -20,29 +18,43 @@
         private $maxAlquilerConcurrente;        
         private array $soportesAlquilados;
         private $numSoportesAlquilados;
-        
+        private $user;
+        private $password;
+
         // Constructor
         /**
          * __construct.
          *
          * @param mixed $nombre Parámetro.
          * @param mixed $numero Parámetro.
+         * @param mixed $user Parámetro.
+         * @param mixed $password Parámetro.
          * @param mixed $maxAlquilerConcurrente Parámetro.   
          */
 
-        public function __construct($nombre, $numero, $maxAlquilerConcurrente = 3) {
+        public function __construct($nombre, $numero, $user, $password, $maxAlquilerConcurrente = 3) {
             $this->nombre = $nombre;
             $this->numero = $numero;
+            $this->user = $user;
+            $this->password = $password;
             $this->maxAlquilerConcurrente = $maxAlquilerConcurrente;
             $this->soportesAlquilados = [];
             $this->numSoportesAlquilados = 0;
         }
+
         
         // Getters y Setters
         /**
-         * GetNumero.
+         * GetUsuario.
          * @return mixed Resultado.
          */
+        public function getUsuario() {
+            return $this->user;
+        }
+
+        public function getPassword() {
+            return $this->password;
+        }
 
         public function getNumero() {
             return $this->numero;
@@ -68,15 +80,7 @@
             return $this->numSoportesAlquilados;
         }
         
-
-        // Método tieneAlquilado
-        /**
-         * TieneAlquilado.
-         *
-         * @param Soporte $s Parámetro.
-         * @return bool Resultado.
-         */
-
+        // Resto de métodos sin cambios...
         public function tieneAlquilado(Soporte $s): bool {
             $encontrado=false;
             foreach ($this->soportesAlquilados as $soporte) {
@@ -87,15 +91,6 @@
             return $encontrado;
         }
         
-        // Método alquilar
-        /**
-         * Alquilar.
-         *
-         * @return self
-         * @throws SoporteYaAlquiladoException
-         * @throws CupoSuperadoException
-         */
-
         public function alquilar(Soporte $s): self {
             if ($this->tieneAlquilado($s)) {
                 throw new SoporteYaAlquiladoException(
@@ -112,28 +107,16 @@
             $this->numSoportesAlquilados++;
             $s->alquilado = true;
 
-            return $this; // encadenamiento
+            return $this;
         }
         
-        // Método devolver
-        /**
-         * Devolver.
-         *
-         * @param int $numSoporte Parámetro.
-         * @return self  Devuelve el propio cliente para encadenar.
-         * @throws SoporteNoEncontradoException
-         */
-
         public function devolver(int $numSoporte): self {
-
             foreach ($this->soportesAlquilados as $indice => $soporte) {
                 if ($soporte->getNumero() === $numSoporte) {
                     array_splice($this->soportesAlquilados, $indice, 1);
                     $this->numSoportesAlquilados--;
-
                     $soporte->alquilado = false;
-                    
-                    return $this; // encadenamiento
+                    return $this;
                 }
             }
 
@@ -142,12 +125,6 @@
             );
         }
         
-        // Método listarAlquileres
-        /**
-         * ListaAlquileres.
-         * @return void Resultado.
-         */
-
         public function listaAlquileres(): void {
             echo "<br>Alquileres de " . $this->nombre . ":";
             echo "<br>Total de alquileres: " . $this->numSoportesAlquilados;
@@ -162,12 +139,6 @@
             }
         }
         
-        // Método muestraResumen
-        /**
-         * MuestraResumen.
-         * @return mixed Resultado.
-         */
-
         public function muestraResumen() {
             echo "<br>Resumen del Cliente: <br>Nombre: " . $this->nombre;
             echo "<br>Alquileres actuales: " . $this->numSoportesAlquilados ;
