@@ -1,6 +1,9 @@
 <?php
 namespace Dwes\ProyectoVideoclub;
-session_start();
+
+require __DIR__ .'/autoload.php';
+
+    session_start();
     if(isset($_POST['enviar'])) {
         $usuario = $_POST['inputUsuario'];
         $password = $_POST['inputPassword'];
