@@ -1,6 +1,10 @@
 <?php
 namespace Dwes\ProyectoVideoclub;
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require __DIR__ .'/autoload.php';
 
     session_start();
@@ -8,45 +12,80 @@ require __DIR__ .'/autoload.php';
         $usuario = $_POST['inputUsuario'];
         $password = $_POST['inputPassword'];
 
+
+        // Datos para las clases de Cliente y la sesión
+        $cliente1 = new Cliente('Bruce Wayne', 1, 'brucewayne', 'batman123', 3);
+        $cliente2 = new Cliente('Clark Kent', 2, 'clarkkent', 'superman123', 3);
+
+        $clientesObjetos = [$cliente1, $cliente2];
+
+        $clientesSesion = [
+            [
+                'nombre' => $cliente1->nombre,
+                'edad'   => 40,
+                'user'   => $cliente1->getUsuario(),
+            ],
+            [
+                'nombre' => $cliente2->nombre,
+                'edad'   => 35,
+                'user'   => $cliente2->getUsuario(),
+            ],
+        ];
+
+        // Datos de prueba: soportes
+        $soportesSesion = [
+            ['tipo' => 'CintaVideo', 'titulo' => 'Los cazafantasmas', 'precio' => 3.5],
+            ['tipo' => 'Juego', 'titulo' => 'The Last of Us Part II', 'precio' => 49.99],
+            ['tipo' => 'Dvd', 'titulo' => 'Origen', 'precio' => 15],
+            ['tipo' => 'Dvd', 'titulo' => 'El Imperio Contraataca', 'precio' => 3]
+        ];
+
         // Validación  de usuario y contraseña admin
         if($usuario === 'admin' && $password === 'admin') {
             $_SESSION['usuario'] = $usuario;
-            
-            // Clientes como ARRAYS ASOCIATIVOS
-            $clientes = [
-                [
-                    'nombre'   => 'Bruce Wayne',
-                    'edad'     => 40,
-                    'user'     => 'brucewayne',
-                    'password' => 'batman123',  
-                ],
-                [
-                    'nombre'   => 'Clark Kent',
-                    'edad'     => 35,
-                    'user'     => 'clarkkent',
-                    'password' => 'superman123',
-                ],
-            ];
-        
-            // Datos de prueba: soportes
-            $soportes = [
-                ['tipo' => 'CintaVideo', 'titulo' => 'Los cazafantasmas', 'precio' => 3.5],
-                ['tipo' => 'Juego', 'titulo' => 'The Last of Us Part II', 'precio' => 49.99],
-                ['tipo' => 'Dvd', 'titulo' => 'Origen', 'precio' => 15],
-                ['tipo' => 'Dvd', 'titulo' => 'El Imperio Contraataca', 'precio' => 3]
-            ];
-            $_SESSION['clientes'] = $clientes;
-            $_SESSION['soportes'] = $soportes;
+            $_SESSION['clientes'] = $clientesSesion;
+            $_SESSION['soportes'] = $soportesSesion;
             header("Location: mainAdmin.php");
 
-        }elseif($usuario === 'usuario' && $password === 'usuario') {
+            exit();
+        } 
+        
+        // Validación usuario y pass usuario
+        if ($usuario === 'usuario' && $password === 'usuario') {
             $_SESSION['usuario'] = $usuario;
             header("Location: main.php");
+          
+            exit();
+            
         }
-        else {
-            $error= "Usuario o contraseña incorrectos.";
-            include 'index.php';
+
+
+        $mainClienteEncontrado = null;
+        $indice = 0;
+        while ($mainClienteEncontrado === null && $indice < count($clientesObjetos)) {
+            
+            $clienteActual = $clientesObjetos[$indice];
+
+            if ($clienteActual->getUsuario() === $usuario && $clienteActual->getPassword() === $password) {
+                $mainClienteEncontrado = $clienteActual;
+            } 
+                
+            $indice++;
         }
+
+        if ($mainClienteEncontrado) {
+            $_SESSION['usuario']     = $mainClienteEncontrado->getUsuario();
+            $_SESSION['mainCliente'] = $mainClienteEncontrado;
+            header("Location: mainCliente.php");
+          
+            exit();
+        }
+        
+        
+        // En cualquier otro caso que no se accede a la sesión se muestra el error
+        $error= "Usuario o contraseña incorrectos.";
+        include 'index.php';
+        
     } else {
         echo "Por favor, envíe el formulario de inicio de sesión.";
     }
