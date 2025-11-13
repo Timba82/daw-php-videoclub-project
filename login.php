@@ -11,10 +11,22 @@ require __DIR__ .'/autoload.php';
         // Validación  de usuario y contraseña admin
         if($usuario === 'admin' && $password === 'admin') {
             $_SESSION['usuario'] = $usuario;
+            
+            // Clientes como ARRAYS ASOCIATIVOS
             $clientes = [
-            new Cliente('Bruce Wayne', 1, 'brucewayne', 'batman123', 3),
-            new Cliente('Clark Kent', 2, 'clarkkent', 'superman123', 3)
-        ];
+                [
+                    'nombre'   => 'Bruce Wayne',
+                    'edad'     => 40,
+                    'user'     => 'brucewayne',
+                    'password' => 'batman123',  
+                ],
+                [
+                    'nombre'   => 'Clark Kent',
+                    'edad'     => 35,
+                    'user'     => 'clarkkent',
+                    'password' => 'superman123',
+                ],
+            ];
         
             // Datos de prueba: soportes
             $soportes = [
