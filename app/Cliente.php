@@ -59,6 +59,10 @@
         public function getNumero() {
             return $this->numero;
         }
+
+        public function getAlquileres(): Array {
+            return $this->soportesAlquilados;
+        }
         
         /**
          * SetNumero.
