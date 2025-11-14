@@ -18,7 +18,7 @@
         <input type='password' name='inputPassword' id='password' maxlength="50" /><br />
     </div>
     <div class='fila'>
-        <input type='submit' name='enviar' value='Enviar' />
+        <input type='submit' name='enviar' value='Enviar' style="margin: 10px 0;"/>
     </div>
     
   </fieldset>
