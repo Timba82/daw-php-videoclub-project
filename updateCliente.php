@@ -16,15 +16,16 @@ if (!isset($_POST['enviar'])) {
 $id = $_POST['id'] ?? null;
 $clientes = $_SESSION['clientes'] ?? [];
 
+// Verificamos que el cliente exista
 if ($id === null || !isset($clientes[$id])) {
     echo "Cliente no encontrado.";
     exit();
 }
 
-// Recoger datos
-$nombre = trim($_POST['nombre']   ?? '');
-$edad = trim($_POST['edad']     ?? '');
-$usuario = trim($_POST['usuario']  ?? '');
+// Recoger datos del formulario
+$nombre   = trim($_POST['nombre'] ?? '');
+$edad     = trim($_POST['edad'] ?? '');
+$usuario  = trim($_POST['usuario'] ?? '');
 $password = trim($_POST['password'] ?? '');
 
 // Validaciones básicas
@@ -39,7 +40,7 @@ if (!empty($errores)) {
     exit();
 }
 
-// Actualizar
+// Actualizar datos en la sesión
 $clientes[$id]['nombre'] = $nombre;
 $clientes[$id]['edad']   = (int)$edad;
 $clientes[$id]['user']   = $usuario;
@@ -48,9 +49,19 @@ if ($password !== '') {
     $clientes[$id]['password'] = $password;
 }
 
+// Guardar cambios en la sesión
 $_SESSION['clientes'] = $clientes;
 
-// Redirigir dependiendo del rol
+// ======= Actualizamos mainCliente si es el cliente logueado =======
+if (isset($_SESSION['mainCliente']) && $_SESSION['mainCliente']->getNumero() == $clientes[$id]['numero']) {
+    $_SESSION['mainCliente']->nombre   = $clientes[$id]['nombre'];
+    $_SESSION['mainCliente']->user     = $clientes[$id]['user'];
+    if (isset($clientes[$id]['password'])) {
+        $_SESSION['mainCliente']->password = $clientes[$id]['password'];
+    }
+}
+
+// Redirigir según el rol
 if ($_SESSION['usuario'] === 'admin') {
     header("Location: mainAdmin.php");
 } else {
