@@ -21,6 +21,7 @@ $soportes = $_SESSION['soportes'] ?? [];
 </head>
 <body>
     <h3>Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario']); ?>!</h3>
+    <a href ="formUpdateCliente.php">Actualizar Cliente</a>
     <a href ="formCreateCliente.php">Crear nuevo cliente</a>
     <ul>
         <?php foreach($clientes as $cliente): ?>

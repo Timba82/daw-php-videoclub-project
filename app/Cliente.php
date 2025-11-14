@@ -16,7 +16,7 @@
         public $nombre;
         private $numero;
         private $maxAlquilerConcurrente;        
-        private array $soportesAlquilados;
+        private $soportesAlquilados;
         private $numSoportesAlquilados;
         private $user;
         private $password;
@@ -60,7 +60,7 @@
             return $this->numero;
         }
 
-        public function getAlquileres(): Array {
+        public function getAlquileres() {
             return $this->soportesAlquilados;
         }
         

@@ -79,8 +79,9 @@ require __DIR__ .'/autoload.php';
         
         
         // En cualquier otro caso que no se accede a la sesión se muestra el error
-        $error= "Usuario o contraseña incorrectos.";
-        include 'index.php';
+        $_SESSION['login_error'] = "Usuario o contraseña incorrectos.";
+        header("Location: index.php");
+        exit();
         
     } else {
         echo "Por favor, envíe el formulario de inicio de sesión.";
