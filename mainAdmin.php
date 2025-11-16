@@ -22,13 +22,20 @@ $soportes = $_SESSION['soportes'] ?? [];
 <body>
     <h3>Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario']); ?>!</h3>
     <a href ="formUpdateCliente.php">Actualizar Cliente</a>
-    <a href ="formCreateCliente.php">Crear nuevo cliente</a>
+    <a href ="formCreateCliente.php">Crear nuevo Cliente</a>
+    <a href ="formCreateCliente.php">Borrar nuevo Cliente</a>
     <ul>
-        <?php foreach($clientes as $cliente): ?>
+        <?php foreach($clientes as $indice => $cliente): ?>
             <li>
                 Nombre: <?php echo htmlspecialchars($cliente['nombre']); ?> - 
                 Edad: <?php echo htmlspecialchars($cliente['edad']); ?> - 
                 Usuario: <?php echo htmlspecialchars($cliente['user']); ?>
+                <a  
+                    href="removeCliente.php?indice=<?php echo $indice; ?>" 
+                    onclick="return confirmarBorrado('<?php echo htmlspecialchars($cliente['nombre'], ENT_QUOTES); ?>');">
+                        Borrar
+                </a>
+               
             </li>
         <?php endforeach; ?>
     </ul>
@@ -42,6 +49,8 @@ $soportes = $_SESSION['soportes'] ?? [];
     </ul>
                 
     <a href ="logout.php">Cerrar sesión</a>
+    
+    <script src="js/script.js"></script>
     
 </body>
 </html>
