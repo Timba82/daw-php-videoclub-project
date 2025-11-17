@@ -36,9 +36,6 @@ $soportes = $_SESSION['soportes'] ?? [];
                     <a href="formCreateCliente.php" class="btn btn-success me-2 mb-2">
                         Crear nuevo Cliente
                     </a>
-                    <a href="formCreateCliente.php" class="btn btn-outline-secondary mb-2">
-                        Borrar nuevo Cliente
-                    </a>
                 </div>
 
                 <!-- Lista de clientes -->
