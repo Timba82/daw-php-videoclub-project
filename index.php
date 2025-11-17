@@ -1,8 +1,12 @@
 <?php
     namespace Dwes\ProyectoVideoclub;
 
-    if (!isset($error)) {
-        $error = "";
+    session_start();
+
+    $error = "";
+    if (isset($_SESSION['login_error'])) {
+        $error = $_SESSION['login_error'];
+        unset($_SESSION['login_error']);
     }
 
     include('includes/head.php');
