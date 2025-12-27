@@ -1,6 +1,6 @@
 <?php
 // v0.331
-namespace Dwes\ProyectoVideoclub;
+
 /**
  * Script de ejemplo del videoclub.
  *
@@ -8,7 +8,10 @@ namespace Dwes\ProyectoVideoclub;
  * lógica de arranque o uso de las clases de dominio.
  */
 
-require_once __DIR__ . '/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Dwes\ProyectoVideoclub\Juego;
+
 ?>
 
 <!DOCTYPE html>

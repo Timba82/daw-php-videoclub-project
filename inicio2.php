@@ -1,9 +1,14 @@
 <?php
 // v0.331
-namespace Dwes\ProyectoVideoclub;
 
-require_once __DIR__ . '/autoload.php';
 
+require_once __DIR__ . '/vendor/autoload.php';
+
+
+use Dwes\ProyectoVideoclub\Cliente;
+use Dwes\ProyectoVideoclub\CintaVideo;
+use Dwes\ProyectoVideoclub\Juego;
+use Dwes\ProyectoVideoclub\Dvd;
 use Dwes\ProyectoVideoclub\Util\SoporteYaAlquiladoException;
 use Dwes\ProyectoVideoclub\Util\CupoSuperadoException;
 use Dwes\ProyectoVideoclub\Util\SoporteNoEncontradoException;
@@ -33,8 +38,8 @@ use Dwes\ProyectoVideoclub\Util\SoporteNoEncontradoException;
 <?php
 
 // Creamos dos clientes
-$cliente1 = new Cliente("Bruce Wayne", 23);
-$cliente2 = new Cliente("Clark Kent", 33);
+$cliente1 = new Cliente("Bruce Wayne", 23, "usuario1", "pass1");
+$cliente2 = new Cliente("Clark Kent", 33, "usuario2", "pass2");
 
 // Mostramos sus identificadores
 echo "<br>El identificador del cliente 1 es: " . $cliente1->getNumero();

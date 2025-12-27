@@ -120,7 +120,7 @@
 
         public function incluirSocio($nombre, $maxAlquileresConcurrentes = 3) {
             $numero = $this->numSocios + 1;
-            $socio = new Cliente($nombre, $numero, $maxAlquileresConcurrentes);
+            $socio = new Cliente($nombre, $numero, null, null, $maxAlquileresConcurrentes);
             $this->socios[] = $socio;
             $this->numSocios++;
             return $socio;
