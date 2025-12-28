@@ -1,5 +1,50 @@
 # Changelog
 
+## [v0.0.0.4] Videoclub 4.0 – 28/12/2025
+### Features Added
+- **Integración de Composer en el proyecto Videoclub**:
+  - Inicialización de Composer dentro del proyecto.
+  - Inclusión de dependencias externas mediante `composer.json`.
+  - Uso del autoload de Composer para la carga automática de clases.
+  - Eliminación de includes manuales innecesarios.
+
+- **Incorporación de Monolog para logging de la aplicación**:
+  - Instalación de Monolog como dependencia del proyecto.
+  - Registro de logs en el archivo `logs/videoclub.log`.
+  - Configuración del logger para mostrar mensajes desde nivel `DEBUG`.
+
+- **Modificación de la clase `Cliente` para uso de logging**:
+  - Añadida propiedad `log` como dependencia de logging.
+  - Inicialización del logger con el canal `VideoclubLogger`.
+  - Registro de eventos relevantes con nivel `info`.
+  - Registro de advertencias (`warning`) antes de lanzar cualquier excepción.
+  - Sustitución de salidas `echo` internas por llamadas al logger.
+  - El método `muestraResumen()` mantiene el uso de `echo` como excepción explícita.
+
+- **Modificación de la clase `Videoclub` para uso de logging**:
+  - Aplicación de los mismos criterios de logging que en la clase `Cliente`.
+  - Registro estructurado de información adicional mediante el contexto del log.
+  - Verificación del correcto funcionamiento mediante archivos de prueba.
+
+- **Refactorización de la configuración de Monolog**:
+  - Creación de la factoría `LogFactory` en `Dwes\ProyectoVideoclub\Util`.
+  - Centralización de la configuración del logger (canal, ruta, nivel).
+  - Evita duplicación de código en los constructores.
+
+- **Uso del estándar PSR-3 (`LoggerInterface`)**:
+  - La factoría devuelve una instancia de `LoggerInterface`.
+  - Desacopla la aplicación de la implementación concreta de Monolog.
+  - Mejora la mantenibilidad, extensibilidad y testabilidad del proyecto.
+
+- **Gestión correcta de logs en control de versiones**:
+  - Inclusión de la carpeta `logs/` en el repositorio mediante `.gitkeep`.
+  - Exclusión de archivos `.log` a través de `.gitignore`.
+  - Evita versionar datos generados en tiempo de ejecución.
+
+- **Control de versiones**:
+  - Subida de los cambios a GitHub.
+  - Creación de la etiqueta `v0.511`.
+
 ## [v0.0.0.3] Videoclub 3.0 16/11/2025
 ### Features Added
 - **Sistema de login con sesiones**:
