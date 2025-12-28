@@ -13,7 +13,7 @@
 
     use Monolog\Logger;
     use Monolog\Handler\StreamHandler;
-
+    use Dwes\ProyectoVideoclub\Util\LogFactory;
     
     
     class Cliente {
@@ -46,9 +46,12 @@
             $this->maxAlquilerConcurrente = $maxAlquilerConcurrente;
             $this->soportesAlquilados = [];
             $this->numSoportesAlquilados = 0;
-            $this->log = new Logger('VideoclubLogger');
-            $this->log->pushHandler(new StreamHandler(__DIR__ . '/../logs/videoclub.log', Logger::DEBUG));
-            
+
+            $this->log = LogFactory::getLogger();
+            $this->log->info("Cliente creado: {$this->nombre}", [
+                'cliente' => $this->nombre,
+                'numero_cliente' => $this->numero
+            ]);
         }
 
         

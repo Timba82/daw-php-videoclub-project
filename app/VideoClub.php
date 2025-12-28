@@ -13,6 +13,7 @@
 
     use Monolog\Logger;
     use Monolog\Handler\StreamHandler;
+    use Dwes\ProyectoVideoclub\Util\LogFactory;
 
     /**
      * Clase Videoclub.
@@ -46,8 +47,7 @@
             $this->numProductosAlquilados = 0;
             $this->numTotalAlquileres = 0;
 
-            $this->log = new Logger('VideoclubLogger');
-            $this->log->pushHandler(new StreamHandler(__DIR__ . '/../logs/videoclub.log', Logger::DEBUG));
+            $this->log = LogFactory::getLogger();
         }
         
         // Método privado para incluir productos
