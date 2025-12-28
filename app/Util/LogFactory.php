@@ -2,7 +2,7 @@
 
 namespace Dwes\ProyectoVideoclub\Util;
 
-use Monolog\Logger;;
+use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Log\LoggerInterface;
 
