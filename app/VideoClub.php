@@ -11,6 +11,9 @@
         CupoSuperadoException
     };
 
+    use Monolog\Logger;
+    use Monolog\Handler\StreamHandler;
+
     /**
      * Clase Videoclub.
      *
@@ -25,7 +28,8 @@
         private $numSocios;
         private $numProductosAlquilados;
         private $numTotalAlquileres;
-        
+        private $log;
+
         // Constructor
         /**
          * __construct.
@@ -41,6 +45,9 @@
             $this->numSocios = 0;
             $this->numProductosAlquilados = 0;
             $this->numTotalAlquileres = 0;
+
+            $this->log = new Logger('VideoclubLogger');
+            $this->log->pushHandler(new StreamHandler(__DIR__ . '/../logs/videoclub.log', Logger::DEBUG));
         }
         
         // Método privado para incluir productos
@@ -182,12 +189,20 @@
                 // Buscar cliente
                 $cliente = $this->buscarCliente($numeroCliente);
                 if (!$cliente) {
+                    $this->log->warning("No existe el cliente con número {$numeroCliente}", [
+                    'nombre_videoclub' => $this->nombre,
+                    'numero_cliente' => $numeroCliente
+                ]);
                     throw new ClienteNoEncontradoException("No existe el cliente con número {$numeroCliente}");
                 }
 
                 // Buscar producto
                 $producto = $this->buscarProducto($numeroSoporte);
                 if (!$producto) {
+                    $this->log->warning("No existe el producto con número {$numeroSoporte}", [
+                        'nombre_videoclub' => $this->nombre,
+                        'numero_soporte' => $numeroSoporte
+                ]);
                     throw new SoporteNoEncontradoException("No existe el producto con número {$numeroSoporte}");
                 }
 
@@ -234,12 +249,20 @@
             try {
                 $cliente = $this->buscarCliente($numeroCliente);
                 if (!$cliente) {
+                    $this->log->warning("No existe el cliente con número {$numeroCliente}", [
+                        'nombre_videoclub' => $this->nombre,
+                        'numero_cliente' => $numeroCliente
+                ]);
                     throw new ClienteNoEncontradoException("No existe el cliente con número {$numeroCliente}");
                 }
 
                 // Localizar el producto para ajustar contadores tras devolver
                 $producto = $this->buscarProducto($numeroSoporte);                  
-                if (!$producto) {                                                   
+                if (!$producto) {                   
+                    $this->log->warning("No existe el producto con número {$numeroSoporte}", [
+                        'nombre_videoclub' => $this->nombre,
+                        'numero_soporte' => $numeroSoporte
+                ]);                                
                     throw new SoporteNoEncontradoException("No existe el producto con número {$numeroSoporte}"); 
                 }                                                                   
 
@@ -288,6 +311,10 @@
                 // Buscar cliente
                 $cliente = $this->buscarCliente($numSocio);
                 if (!$cliente) {
+                    $this->log->warning("No existe el cliente con número {$numSocio}", [
+                        'nombre_videoclub' => $this->nombre,
+                        'numero_socio' => $numSocio
+                ]);
                     throw new ClienteNoEncontradoException("No existe el cliente con número {$numSocio}");
                 }
 
@@ -401,6 +428,10 @@
                 // Buscar cliente
                 $cliente = $this->buscarCliente($numSocio);
                 if (!$cliente) {
+                    $this->log->warning("No existe el cliente con número {$numSocio}", [
+                        'nombre_videoclub' => $this->nombre,
+                        'numero_socio' => $numSocio
+                    ]);
                     throw new ClienteNoEncontradoException("No existe el cliente con número {$numSocio}");
                 }
 
@@ -412,9 +443,17 @@
                 foreach ($numerosSolicitados as $numSoporte) {
                     $producto = $this->buscarProducto($numSoporte);
                     if (!$producto) {
+                        $this->log->warning("No existe el producto con número {$numSoporte}", [
+                            'nombre_videoclub' => $this->nombre,
+                            'numero_soporte' => $numSoporte]
+                        );
                         throw new SoporteNoEncontradoException("No existe el producto con número {$numSoporte}");
                     }
                     if (($producto->alquilado ?? false) === true) {
+                        $this->log->warning("El producto {$numSoporte} ya está alquilado", [
+                            'nombre_videoclub' => $this->nombre,
+                            'numero_soporte' => $numSoporte
+                        ]);
                         throw new SoporteYaAlquiladoException("El producto {$numSoporte} ya está alquilado");
                     }
                     $productosAAlquilar[] = $producto;

@@ -11,6 +11,11 @@
     use Dwes\ProyectoVideoclub\Util\SoporteNoEncontradoException;
     use Dwes\ProyectoVideoclub\Util\SoporteYaAlquiladoException;
 
+    use Monolog\Logger;
+    use Monolog\Handler\StreamHandler;
+
+    
+    
     class Cliente {
 
         public $nombre;
@@ -20,6 +25,7 @@
         private $numSoportesAlquilados;
         private $user;
         private $password;
+        private $log;
 
         // Constructor
         /**
@@ -40,6 +46,9 @@
             $this->maxAlquilerConcurrente = $maxAlquilerConcurrente;
             $this->soportesAlquilados = [];
             $this->numSoportesAlquilados = 0;
+            $this->log = new Logger('VideoclubLogger');
+            $this->log->pushHandler(new StreamHandler(__DIR__ . '/../logs/videoclub.log', Logger::DEBUG));
+            
         }
 
         
@@ -97,11 +106,21 @@
         
         public function alquilar(Soporte $s): self {
             if ($this->tieneAlquilado($s)) {
+                $this->log->warning("El soporte {$s->getNumero()} ya está alquilado por {$this->nombre}", [
+                    'cliente' => $this->nombre,
+                    'max' => $this->maxAlquilerConcurrente
+                ]);
+
                 throw new SoporteYaAlquiladoException(
                     "El soporte {$s->getNumero()} ya está alquilado por {$this->nombre}"
                 );
             }
             if ($this->numSoportesAlquilados >= $this->maxAlquilerConcurrente) {
+                $this->log->warning("{$this->nombre} ha superado el cupo máximo de {$this->maxAlquilerConcurrente} alquileres", [
+                    'cliente' => $this->nombre,
+                    'max' => $this->maxAlquilerConcurrente
+                ]);
+
                 throw new CupoSuperadoException(
                     "{$this->nombre} ha superado el cupo máximo de {$this->maxAlquilerConcurrente} alquileres"
                 );
