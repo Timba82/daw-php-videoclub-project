@@ -126,6 +126,47 @@ Define el método `muestraResumen()`, que deben implementar todas las clases que
 
 ---
 
+---
+
+## 🧪 Ejecución de pruebas unitarias
+
+El proyecto incorpora **pruebas unitarias con PHPUnit**, gestionadas mediante **Composer**, lo que permite ejecutar los tests y generar informes de cobertura de forma sencilla y estandarizada.
+
+### 📦 Requisitos previos
+Antes de ejecutar las pruebas, asegúrate de tener:
+- PHP instalado (versión compatible con PHPUnit 9.x)
+- Composer instalado
+
+Instala las dependencias del proyecto ejecutando:
+
+```bash
+composer install
+```
+
+Para ejecutar la batería completa de pruebas unitarias:
+
+```bash
+composer test
+```
+
+Para generar el informe HTML de cobertura de código:
+
+```bash
+composer test:coverage
+```
+
+Tras la ejecución:
+
+  Se creará la carpeta coverage/ en el proyecto.
+
+  Abre el archivo coverage/index.html en tu navegador para consultar el informe.
+
+📌 El informe permite comprobar:
+
+  El porcentaje total de cobertura (≥ 90%).
+
+  El valor de CRAP, que se mantiene en valores ≤ 5 según los requisitos del ejercicio.
+
 ## ⚙️ Instrucciones de Uso
 
 ### 🖥️ 1. Clonar el repositorio usando HTTPS
