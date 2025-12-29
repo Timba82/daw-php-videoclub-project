@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for C:\Users\Alex\Desktop\DAW2\DAWS\daw-php-videoclub-project\app</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_css/bootstrap.min.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="_css/nv.d3.min.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="_css/style.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">C:\Users\Alex\Desktop\DAW2\DAWS\daw-php-videoclub-project\app</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Dvd.php.html#13">Dwes\ProyectoVideoclub\Dvd</a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Cliente.php.html#19">Dwes\ProyectoVideoclub\Cliente</a></td><td class="text-right">81%</td></tr>
+       <tr><td><a href="Juego.php.html#13">Dwes\ProyectoVideoclub\Juego</a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="CintaVideo.php.html#12">Dwes\ProyectoVideoclub\CintaVideo</a></td><td class="text-right">85%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Cliente.php.html#19">Dwes\ProyectoVideoclub\Cliente</a></td><td class="text-right">22</td></tr>
+       <tr><td><a href="Juego.php.html#13">Dwes\ProyectoVideoclub\Juego</a></td><td class="text-right">8</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="CintaVideo.php.html#39"><abbr title="Dwes\ProyectoVideoclub\CintaVideo::getDuracion">getDuracion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Cliente.php.html#63"><abbr title="Dwes\ProyectoVideoclub\Cliente::getUsuario">getUsuario</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Cliente.php.html#67"><abbr title="Dwes\ProyectoVideoclub\Cliente::getPassword">getPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Cliente.php.html#75"><abbr title="Dwes\ProyectoVideoclub\Cliente::getAlquileres">getAlquileres</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Cliente.php.html#86"><abbr title="Dwes\ProyectoVideoclub\Cliente::setNumero">setNumero</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Cliente.php.html#154"><abbr title="Dwes\ProyectoVideoclub\Cliente::listaAlquileres">listaAlquileres</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Dvd.php.html#43"><abbr title="Dwes\ProyectoVideoclub\Dvd::getIdioma">getIdioma</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Dvd.php.html#53"><abbr title="Dwes\ProyectoVideoclub\Dvd::getFormatPantalla">getFormatPantalla</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Juego.php.html#46"><abbr title="Dwes\ProyectoVideoclub\Juego::getMinNumJugadores">getMinNumJugadores</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Juego.php.html#56"><abbr title="Dwes\ProyectoVideoclub\Juego::getMaxNumJugadores">getMaxNumJugadores</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Juego.php.html#67"><abbr title="Dwes\ProyectoVideoclub\Juego::muestraJugadoresPosibles">muestraJugadoresPosibles</abbr></a></td><td class="text-right">85%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Cliente.php.html#154"><abbr title="Dwes\ProyectoVideoclub\Cliente::listaAlquileres">listaAlquileres</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Juego.php.html#67"><abbr title="Dwes\ProyectoVideoclub\Juego::muestraJugadoresPosibles">muestraJugadoresPosibles</abbr></a></td><td class="text-right">4</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.32</a> using <a href="https://secure.php.net/" target="_top">PHP 8.2.12</a> and <a href="https://phpunit.de/">PHPUnit 9.6.31</a> at Mon Dec 29 5:42:30 CET 2025.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="_js/jquery.min.js?v=9.2.32" type="text/javascript"></script>
+  <script src="_js/d3.min.js?v=9.2.32" type="text/javascript"></script>
+  <script src="_js/nv.d3.min.js?v=9.2.32" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,4,1,7], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([10,0,0,0,0,0,0,0,0,1,4,36], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[85.71428571428571,3,"<a href=\"CintaVideo.php.html#12\">Dwes\\ProyectoVideoclub\\CintaVideo<\/a>"],[81.9672131147541,20,"<a href=\"Cliente.php.html#19\">Dwes\\ProyectoVideoclub\\Cliente<\/a>"],[80,4,"<a href=\"Dvd.php.html#13\">Dwes\\ProyectoVideoclub\\Dvd<\/a>"],[83.33333333333334,8,"<a href=\"Juego.php.html#13\">Dwes\\ProyectoVideoclub\\Juego<\/a>"],[100,5,"<a href=\"Soporte.php.html#14\">Dwes\\ProyectoVideoclub\\Soporte<\/a>"],[100,0,"<a href=\"Util\/ClienteNoEncontradoException.php.html#5\">Dwes\\ProyectoVideoclub\\Util\\ClienteNoEncontradoException<\/a>"],[100,0,"<a href=\"Util\/CupoSuperadoException.php.html#5\">Dwes\\ProyectoVideoclub\\Util\\CupoSuperadoException<\/a>"],[100,1,"<a href=\"Util\/LogFactory.php.html#16\">Dwes\\ProyectoVideoclub\\Util\\LogFactory<\/a>"],[100,0,"<a href=\"Util\/SoporteNoEncontradoException.php.html#5\">Dwes\\ProyectoVideoclub\\Util\\SoporteNoEncontradoException<\/a>"],[100,0,"<a href=\"Util\/SoporteYaAlquiladoException.php.html#5\">Dwes\\ProyectoVideoclub\\Util\\SoporteYaAlquiladoException<\/a>"],[100,0,"<a href=\"Util\/VideoclubException.php.html#8\">Dwes\\ProyectoVideoclub\\Util\\VideoclubException<\/a>"],[94.62809917355372,68,"<a href=\"VideoClub.php.html#24\">Dwes\\ProyectoVideoclub\\Videoclub<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"CintaVideo.php.html#26\">Dwes\\ProyectoVideoclub\\CintaVideo::__construct<\/a>"],[0,1,"<a href=\"CintaVideo.php.html#39\">Dwes\\ProyectoVideoclub\\CintaVideo::getDuracion<\/a>"],[100,1,"<a href=\"CintaVideo.php.html#49\">Dwes\\ProyectoVideoclub\\CintaVideo::muestraResumen<\/a>"],[100,1,"<a href=\"Cliente.php.html#41\">Dwes\\ProyectoVideoclub\\Cliente::__construct<\/a>"],[0,1,"<a href=\"Cliente.php.html#63\">Dwes\\ProyectoVideoclub\\Cliente::getUsuario<\/a>"],[0,1,"<a href=\"Cliente.php.html#67\">Dwes\\ProyectoVideoclub\\Cliente::getPassword<\/a>"],[100,1,"<a href=\"Cliente.php.html#71\">Dwes\\ProyectoVideoclub\\Cliente::getNumero<\/a>"],[0,1,"<a href=\"Cliente.php.html#75\">Dwes\\ProyectoVideoclub\\Cliente::getAlquileres<\/a>"],[0,1,"<a href=\"Cliente.php.html#86\">Dwes\\ProyectoVideoclub\\Cliente::setNumero<\/a>"],[100,1,"<a href=\"Cliente.php.html#95\">Dwes\\ProyectoVideoclub\\Cliente::getNumSoportesAlquilados<\/a>"],[100,3,"<a href=\"Cliente.php.html#100\">Dwes\\ProyectoVideoclub\\Cliente::tieneAlquilado<\/a>"],[100,3,"<a href=\"Cliente.php.html#110\">Dwes\\ProyectoVideoclub\\Cliente::alquilar<\/a>"],[100,3,"<a href=\"Cliente.php.html#139\">Dwes\\ProyectoVideoclub\\Cliente::devolver<\/a>"],[0,3,"<a href=\"Cliente.php.html#154\">Dwes\\ProyectoVideoclub\\Cliente::listaAlquileres<\/a>"],[100,1,"<a href=\"Cliente.php.html#168\">Dwes\\ProyectoVideoclub\\Cliente::muestraResumen<\/a>"],[100,1,"<a href=\"Dvd.php.html#29\">Dwes\\ProyectoVideoclub\\Dvd::__construct<\/a>"],[0,1,"<a href=\"Dvd.php.html#43\">Dwes\\ProyectoVideoclub\\Dvd::getIdioma<\/a>"],[0,1,"<a href=\"Dvd.php.html#53\">Dwes\\ProyectoVideoclub\\Dvd::getFormatPantalla<\/a>"],[100,1,"<a href=\"Dvd.php.html#62\">Dwes\\ProyectoVideoclub\\Dvd::muestraResumen<\/a>"],[100,1,"<a href=\"Juego.php.html#31\">Dwes\\ProyectoVideoclub\\Juego::__construct<\/a>"],[0,1,"<a href=\"Juego.php.html#46\">Dwes\\ProyectoVideoclub\\Juego::getMinNumJugadores<\/a>"],[0,1,"<a href=\"Juego.php.html#56\">Dwes\\ProyectoVideoclub\\Juego::getMaxNumJugadores<\/a>"],[85.71428571428571,4,"<a href=\"Juego.php.html#67\">Dwes\\ProyectoVideoclub\\Juego::muestraJugadoresPosibles<\/a>"],[100,1,"<a href=\"Juego.php.html#87\">Dwes\\ProyectoVideoclub\\Juego::muestraResumen<\/a>"],[100,1,"<a href=\"Soporte.php.html#30\">Dwes\\ProyectoVideoclub\\Soporte::__construct<\/a>"],[100,1,"<a href=\"Soporte.php.html#42\">Dwes\\ProyectoVideoclub\\Soporte::getPrecio<\/a>"],[100,1,"<a href=\"Soporte.php.html#51\">Dwes\\ProyectoVideoclub\\Soporte::getPrecioConIva<\/a>"],[100,1,"<a href=\"Soporte.php.html#60\">Dwes\\ProyectoVideoclub\\Soporte::getNumero<\/a>"],[100,1,"<a href=\"Soporte.php.html#73\">Dwes\\ProyectoVideoclub\\Soporte::muestraResumen<\/a>"],[100,1,"<a href=\"Util\/LogFactory.php.html#18\">Dwes\\ProyectoVideoclub\\Util\\LogFactory::getLogger<\/a>"],[100,1,"<a href=\"VideoClub.php.html#41\">Dwes\\ProyectoVideoclub\\Videoclub::__construct<\/a>"],[100,1,"<a href=\"VideoClub.php.html#61\">Dwes\\ProyectoVideoclub\\Videoclub::incluirProducto<\/a>"],[100,1,"<a href=\"VideoClub.php.html#76\">Dwes\\ProyectoVideoclub\\Videoclub::incluirCintaVideo<\/a>"],[100,1,"<a href=\"VideoClub.php.html#94\">Dwes\\ProyectoVideoclub\\Videoclub::incluirDvd<\/a>"],[100,1,"<a href=\"VideoClub.php.html#112\">Dwes\\ProyectoVideoclub\\Videoclub::incluirJuego<\/a>"],[100,1,"<a href=\"VideoClub.php.html#128\">Dwes\\ProyectoVideoclub\\Videoclub::incluirSocio<\/a>"],[100,3,"<a href=\"VideoClub.php.html#142\">Dwes\\ProyectoVideoclub\\Videoclub::listarProductos<\/a>"],[100,3,"<a href=\"VideoClub.php.html#163\">Dwes\\ProyectoVideoclub\\Videoclub::listarSocios<\/a>"],[95,7,"<a href=\"VideoClub.php.html#187\">Dwes\\ProyectoVideoclub\\Videoclub::alquilaSocioProducto<\/a>"],[94.5945945945946,8,"<a href=\"VideoClub.php.html#259\">Dwes\\ProyectoVideoclub\\Videoclub::devolverSocioProducto<\/a>"],[90.2439024390244,14,"<a href=\"VideoClub.php.html#327\">Dwes\\ProyectoVideoclub\\Videoclub::devolverSocioProductos<\/a>"],[100,3,"<a href=\"VideoClub.php.html#410\">Dwes\\ProyectoVideoclub\\Videoclub::buscarCliente<\/a>"],[100,3,"<a href=\"VideoClub.php.html#426\">Dwes\\ProyectoVideoclub\\Videoclub::buscarProducto<\/a>"],[92.42424242424242,14,"<a href=\"VideoClub.php.html#447\">Dwes\\ProyectoVideoclub\\Videoclub::alquilarSocioProductos<\/a>"],[100,1,"<a href=\"VideoClub.php.html#559\">Dwes\\ProyectoVideoclub\\Videoclub::getNombre<\/a>"],[100,1,"<a href=\"VideoClub.php.html#568\">Dwes\\ProyectoVideoclub\\Videoclub::getNumProductos<\/a>"],[100,1,"<a href=\"VideoClub.php.html#577\">Dwes\\ProyectoVideoclub\\Videoclub::getNumSocios<\/a>"],[100,1,"<a href=\"VideoClub.php.html#586\">Dwes\\ProyectoVideoclub\\Videoclub::getProductos<\/a>"],[100,1,"<a href=\"VideoClub.php.html#595\">Dwes\\ProyectoVideoclub\\Videoclub::getSocios<\/a>"],[100,1,"<a href=\"VideoClub.php.html#603\">Dwes\\ProyectoVideoclub\\Videoclub::getNumProductosAlquilados<\/a>"],[100,1,"<a href=\"VideoClub.php.html#611\">Dwes\\ProyectoVideoclub\\Videoclub::getNumTotalAlquileres<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

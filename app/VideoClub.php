@@ -197,7 +197,7 @@
                     'numero_socio' => $this->numSocios,
                     'total_alquileres' => $this->numTotalAlquileres,
                     'productos_alquilados' => $this->numProductosAlquilados,
-                    'cliente_nombre' => $cliente->nombre,
+                    'cliente_nombre' => "(no encontrado)",
                 ]);
                     throw new ClienteNoEncontradoException("No existe el cliente con número {$numeroCliente}");
                 }
@@ -269,7 +269,7 @@
                         'numero_socio' => $this->numSocios,
                         'total_alquileres' => $this->numTotalAlquileres,
                         'productos_alquilados' => $this->numProductosAlquilados,
-                        'cliente_nombre' => $cliente->nombre,
+                        'cliente_nombre' => "(no encontrado)",
                 ]);
                     throw new ClienteNoEncontradoException("No existe el cliente con número {$numeroCliente}");
                 }
@@ -341,7 +341,7 @@
                         'numero_socio' => $this->numSocios,
                         'total_alquileres' => $this->numTotalAlquileres,
                         'productos_alquilados' => $this->numProductosAlquilados,
-                        'cliente_nombre' => $cliente->nombre,
+                        'cliente_nombre' => '(no encontrado)',
                 ]);
                     throw new ClienteNoEncontradoException("No existe el cliente con número {$numSocio}");
                 }
@@ -462,7 +462,7 @@
                         'numero_socio' => $this->numSocios,
                         'total_alquileres' => $this->numTotalAlquileres,
                         'productos_alquilados' => $this->numProductosAlquilados,
-                        'cliente_nombre' => $cliente->nombre,
+                        'cliente_nombre' => '(no encontrado)',
                     ]);
                     throw new ClienteNoEncontradoException("No existe el cliente con número {$numSocio}");
                 }
