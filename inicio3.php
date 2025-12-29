@@ -7,7 +7,7 @@ namespace Dwes\ProyectoVideoclub;
  * Este archivo forma parte del proyecto de Videoclub (DAW2) y contiene
  * lógica de arranque o uso de las clases de dominio.
  */
-require_once __DIR__ . '/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 ?>
 

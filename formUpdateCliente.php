@@ -1,5 +1,6 @@
 <?php
-namespace Dwes\ProyectoVideoclub;
+
+require_once __DIR__ . '/vendor/autoload.php';
 session_start();
 
 // Comprobamos que sea admin

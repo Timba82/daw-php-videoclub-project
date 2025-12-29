@@ -1,0 +1,30 @@
+{
+    "name": "timbadev/daw-php-videoclub-project",
+    "type": "project",
+    "license": "MIT",
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test:coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dwes\\ProyectoVideoclub\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Fran",
+            "email": "fgilm16@iesvjp.es"
+        },
+        {
+            "name": "Alejandro",
+            "email": "alex1998@iesvjp.es"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "^2.10"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
+    }
+}
