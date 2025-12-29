@@ -2,6 +2,10 @@
     "name": "timbadev/daw-php-videoclub-project",
     "type": "project",
     "license": "MIT",
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test:coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
     "autoload": {
         "psr-4": {
             "Dwes\\ProyectoVideoclub\\": "app/"
