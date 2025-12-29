@@ -1,5 +1,45 @@
 # Changelog
 
+## [v0.0.0.5] Videoclub 4.0 – 29/12/2025
+### Features Added
+- **Implementación completa de pruebas unitarias con PHPUnit**:
+  - Creación de pruebas para las clases `Soporte`, `CintaVideo`, `Dvd` y `Juego`.
+  - Verificación del correcto funcionamiento de métodos y constructores.
+  - Adaptación de los métodos `muestraResumen()` para que, además de mostrar salida por pantalla, devuelvan la cadena generada, facilitando su testeo.
+
+- **Creación de pruebas avanzadas para la clase `Cliente`**:
+  - Reutilización y ampliación de los casos de prueba existentes.
+  - Uso de *data providers* para validar múltiples conjuntos de datos.
+  - Comprobación de distintos cupos de alquiler.
+  - Verificación del lanzamiento de excepciones al intentar alquilar soportes ya alquilados.
+  - Validación de la no coincidencia de identificadores de soportes.
+
+- **Creación de pruebas para la clase `Videoclub`**:
+  - Pruebas de los métodos de alquiler y devolución de soportes.
+  - Validación de operaciones individuales y mediante arrays de soportes.
+  - Comprobación del estado correcto del videoclub tras cada operación.
+
+- **Generación y análisis del informe de cobertura**:
+  - Configuración de PHPUnit para generar informes HTML de cobertura.
+  - Obtención de una cobertura global superior al **90%**, cumpliendo los requisitos del ejercicio.
+  - Revisión del valor de **CRAP**, manteniéndolo siempre en valores ≤ 5.
+  - Ajustes en tests y código para mejorar métricas de calidad cuando ha sido necesario.
+
+- **Mejora de la experiencia de ejecución mediante Composer**:
+  - Añadidos scripts personalizados en `composer.json`:
+    - `composer test` para ejecutar la batería completa de pruebas.
+    - `composer test:coverage` para generar el informe de cobertura.
+  - Facilita la ejecución de pruebas y la corrección del proyecto.
+
+- **Gestión correcta de archivos temporales y de cobertura**:
+  - Exclusión de la carpeta `coverage/` y del archivo `.phpunit.result.cache` mediante `.gitignore`.
+  - Evita versionar artefactos generados automáticamente por PHPUnit.
+
+- **Control de versiones**:
+  - Subida de los cambios al repositorio GitHub.
+  - Creación de la etiqueta `v0.554`.
+
+
 ## [v0.0.0.4] Videoclub 4.0 – 28/12/2025
 ### Features Added
 - **Integración de Composer en el proyecto Videoclub**:
